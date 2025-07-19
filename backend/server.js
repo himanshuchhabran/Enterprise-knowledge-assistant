@@ -3,7 +3,7 @@ const cors = require('cors');
 require('dotenv').config();
 const { initDb } = require('./db');
 const authRoutes = require('./routes/auth');
-//const chatRoutes = require('./routes/chat'); // We will create this next
+const chatRoutes = require('./routes/chat'); // We will create this next
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -14,7 +14,7 @@ app.use(express.json());
 
 // Routes
 app.use('/api/auth', authRoutes);
-//app.use('/api/chat', chatRoutes);
+app.use('/api/chat', chatRoutes);
 
 // Start server
 app.listen(PORT, async () => {
