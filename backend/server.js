@@ -8,10 +8,13 @@ const adminRoutes = require('./routes/admin');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
+const passport = require('passport');
+require('./config/passport'); 
 
 // Middleware
 app.use(cors());
 app.use(express.json());
+app.use(passport.initialize());
 
 // Routes
 app.use('/api/auth', authRoutes);

@@ -21,6 +21,8 @@
     "langchain": "^0.3.30",
     "multer": "^2.0.2",
     "nodemon": "^3.1.10",
+    "passport": "^0.7.0",
+    "passport-google-oauth20": "^2.0.0",
     "pdf-parse": "^1.1.1",
     "pg": "^8.16.3",
     "vectra": "^0.11.1"

@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { pool } = require('../db');
 const router = express.Router();
+const passport = require('passport');
 
 // Register
 router.post('/register', async (req, res) => {
@@ -53,5 +54,24 @@ router.post('/login', async (req, res) => {
     res.status(500).json({ error: 'Server error' });
   }
 });
+router.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
+
+router.get(
+  '/google/callback',
+  passport.authenticate('google', { session: false, failureRedirect: '/login/failed' }),
+  (req, res) => {
+    // On successful authentication, req.user is populated.
+    // We create a JWT for this user.
+    const token = jwt.sign(
+      { id: req.user.id, email: req.user.email, role: req.user.role },
+      process.env.JWT_SECRET,
+      { expiresIn: '1h' }
+    );
+    
+    // Redirect the user back to the frontend with the token.
+    // The frontend will then have to handle this.
+    res.redirect(`http://localhost:5173/?token=${token}&role=${req.user.role}`);
+  }
+);
 
 module.exports = router;
