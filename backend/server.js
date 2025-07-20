@@ -5,6 +5,7 @@ const { initDb } = require('./db');
 const authRoutes = require('./routes/auth');
 const chatRoutes = require('./routes/chat');
 const adminRoutes = require('./routes/admin');
+const path = require('path'); 
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -15,6 +16,7 @@ require('./config/passport');
 app.use(cors());
 app.use(express.json());
 app.use(passport.initialize());
+app.use('/data', express.static(path.join(__dirname, 'data')));
 
 // Routes
 app.use('/api/auth', authRoutes);

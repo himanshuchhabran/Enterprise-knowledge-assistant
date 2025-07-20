@@ -1,6 +1,7 @@
 const express = require('express');
 const multer = require('multer');
 const path = require('path');
+const fs = require('fs');
 const { adminAuthMiddleware } = require('../middleware/adminAuth');
 const { processAndEmbedFile } = require('../services/ingestionService');
 
@@ -53,6 +54,20 @@ router.post('/upload', adminAuthMiddleware, (req, res) => {
             res.status(500).json({ error: 'Failed to process file.' });
         }
     });
+
 });
+
+router.get('/documents', adminAuthMiddleware, (req, res) => {
+  const directoryPath = path.join(__dirname, '../data');
+
+  fs.readdir(directoryPath, (err, files) => {
+    if (err) {
+      console.error("Unable to scan directory: " + err);
+      return res.status(500).json({ error: "Unable to scan documents." });
+    }
+    res.json(files);
+  });
+});
+
 
 module.exports = router;
