@@ -6,6 +6,12 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon server.js"
   },
+  "nodemonConfig": {
+    "ignore": [
+      "data/*",
+      "vectra_index/*"
+    ]
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

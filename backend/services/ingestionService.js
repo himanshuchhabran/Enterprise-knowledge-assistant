@@ -25,24 +25,31 @@ const processAndEmbedFile = async (filePath, fileName) => {
   });
   const chunks = await splitter.splitText(content);
   
-  console.log(`Embedding ${chunks.length} chunks for ${fileName}...`);
-  const embeddings = await embeddingModel.batchEmbedContents({
-    requests: chunks.map(chunk => ({
-      content: { parts: [{ text: chunk }] },
-      taskType: "RETRIEVAL_DOCUMENT"
-    }))
-  });
+  const BATCH_SIZE = 100; // Google's API limit
+  console.log(`Document split into ${chunks.length} chunks. Processing in batches of ${BATCH_SIZE}...`);
 
-  const items = chunks.map((chunk, i) => ({
-    vector: embeddings.embeddings[i].values,
-    metadata: { text: chunk, file: fileName }
-  }));
+  for (let i = 0; i < chunks.length; i += BATCH_SIZE) {
+    const batchChunks = chunks.slice(i, i + BATCH_SIZE);
+    
+    console.log(`Embedding batch starting at chunk ${i}...`);
+    const embeddings = await embeddingModel.batchEmbedContents({
+      requests: batchChunks.map(chunk => ({
+        content: { parts: [{ text: chunk }] },
+        taskType: "RETRIEVAL_DOCUMENT"
+      }))
+    });
 
-  console.log(`Upserting ${items.length} items into the index...`);
-  for (const item of items) {
-    await index.upsertItem(item);
+    const items = batchChunks.map((chunk, j) => ({
+      vector: embeddings.embeddings[j].values,
+      metadata: { text: chunk, file: fileName }
+    }));
+
+    console.log(`Upserting ${items.length} items from this batch...`);
+    for (const item of items) {
+      await index.upsertItem(item);
+    }
   }
+  
   console.log(`✅ ${fileName} processed successfully!`);
 };
-
 module.exports = { processAndEmbedFile };
