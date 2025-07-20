@@ -24,7 +24,7 @@ const ChatPage = ({ onLogout }) => {
     try {
       const token = localStorage.getItem('token');
       const res = await axios.post(
-        'http://localhost:3001/api/chat',
+        '${import.meta.env.VITE_API_URL}/api/chat',
         { query: input },
         { headers: { Authorization: `Bearer ${token}` } }
       );

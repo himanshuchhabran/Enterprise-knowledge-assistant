@@ -1,7 +1,7 @@
 const { LocalIndex } = require('vectra');
 const { GoogleGenerativeAI } = require('@google/generative-ai');
 const path = require('path');
-const { pool } = require('../db');
+const { pool } = require('../config/db');
 
 const index = new LocalIndex(path.join(__dirname, '../vectra_index'));
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
