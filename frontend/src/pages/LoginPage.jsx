@@ -19,7 +19,7 @@ const LoginPage = ({ onLogin }) => {
         setIsRegistering(false);
       } else {
         const res = await axios.post(`${API_URL}/login`, { email, password });
-        onLogin(res.data.token);
+        onLogin(res.data.token,res.data.role);
       }
     } catch (err) {
       setError('Invalid credentials or server error.');
@@ -27,8 +27,11 @@ const LoginPage = ({ onLogin }) => {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen">
+    <div>
+        <div className="flex items-center justify-center h-screen">
+        
       <div className="w-full max-w-md p-8 space-y-6 bg-gray-800 rounded-lg shadow-md">
+
         <h2 className="text-2xl font-bold text-center">{isRegistering ? 'Register' : 'Login'}</h2>
         <form onSubmit={handleSubmit} className="space-y-6">
           <input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="Email" required className="w-full px-4 py-2 text-gray-900 bg-gray-200 rounded-md focus:outline-none"/>
@@ -41,8 +44,23 @@ const LoginPage = ({ onLogin }) => {
             {isRegistering ? 'Already have an account? Login' : "Don't have an account? Register"}
           </button>
         </p>
+         <div className="relative flex py-2 items-center">
+      <div className="flex-grow border-t border-gray-600"></div>
+      <span className="flex-shrink mx-4 text-gray-400">OR</span>
+      <div className="flex-grow border-t border-gray-600"></div>
+  </div>
+
+  <a 
+    href="http://localhost:3001/api/auth/google" 
+    className="w-full flex items-center justify-center px-4 py-2 font-bold text-white bg-red-600 rounded-md hover:bg-red-700"
+  >
+    Login with Google
+  </a>
       </div>
+      
     </div>
+    </div>
+    
   );
 };
 
