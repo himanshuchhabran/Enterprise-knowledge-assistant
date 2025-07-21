@@ -6,7 +6,7 @@ An AI-powered internal assistant that uses a Retrieval-Augmented Generation (RAG
 
 **You can access the live, deployed application here:**
 
-**[https://enterprise-knowledge-assistant-isgl4oiqr.vercel.app/](https://enterprise-knowledge-assistant-isgl4oiqr.vercel.app/)**
+**[https://enterprise-knowledge-assistant.vercel.app/](https://enterprise-knowledge-assistant.vercel.app/)**
 
 ## Features
 
@@ -72,8 +72,8 @@ Follow these steps to run the project locally.
 
 ### 3. Frontend Setup
 
-cd frontend
-npm install
+* cd frontend
+* npm install
 
 # Create .env file in frotend folder and enter your backend url
 VITE_API_URL=http://localhost:3001
