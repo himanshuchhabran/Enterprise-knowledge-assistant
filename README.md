@@ -56,18 +56,19 @@ Follow these steps to run the project locally.
 
 ### 2.Backend Setup
 
-cd backend
-npm install
+* cd backend
+* npm install
 
 # Create a .env file and enter with your credentials:
-DATABASE_URL="postgresql://YOUR_USER:YOUR_PASSWORD@localhost:5432/nebula9_db"
-JWT_SECRET="your-super-secret-jwt-key"
-GEMINI_API_KEY="your-google-ai-api-key"
-GOOGLE_CLIENT_ID="your-google-client-id"
-GOOGLE_CLIENT_SECRET="your-google-client-secret"
+
+* DATABASE_URL="postgresql://YOUR_USER:YOUR_PASSWORD@localhost:5432/nebula9_db"
+* JWT_SECRET="your-super-secret-jwt-key"
+* GEMINI_API_KEY="your-google-ai-api-key"
+* GOOGLE_CLIENT_ID="your-google-client-id"
+* GOOGLE_CLIENT_SECRET="your-google-client-secret"
 
 # Start the backend server
-npm start
+* npm start
 
 ### 3. Frontend Setup
 
@@ -78,7 +79,7 @@ npm install
 VITE_API_URL=http://localhost:3001
 
 # Start the frontend development server
-npm run dev
+* npm run dev
 
 
 ### Key Assumptions Made
