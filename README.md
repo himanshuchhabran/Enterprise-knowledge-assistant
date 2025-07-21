@@ -2,6 +2,12 @@
 
 An AI-powered internal assistant that uses a Retrieval-Augmented Generation (RAG) pipeline to answer complex, policy-aware employee questions. This application is built with a React frontend, a Node.js backend, and leverages the Google Gemini API for its AI capabilities.
 
+## Live Demo
+
+**You can access the live, deployed application here:**
+
+**[https://enterprise-knowledge-assistant-isgl4oiqr.vercel.app/](https://enterprise-knowledge-assistant-isgl4oiqr.vercel.app/)**
+
 ## Features
 
 * **Secure Authentication:** Users can register and log in via email/password or securely through Google OAuth.
@@ -16,10 +22,15 @@ An AI-powered internal assistant that uses a Retrieval-Augmented Generation (RAG
 
 * **Frontend:** React, Vite, Tailwind CSS
 * **Backend:** Node.js, Express.js
-* **Database:** PostgreSQL for user management and query history.
-* **Vector Store:** Vectra for local, file-based vector storage and similarity search.
-* **AI & Embeddings:** Google Gemini API (gemini-1.5-flash, text-embedding-004)
-* **Authentication:** JWT (JSON Web Tokens), Passport.js for Google OAuth 2.0.
+* **Database:** PostgreSQL
+* **Vector Store:** Vectra
+* **AI & Embeddings:** Google Gemini API
+* **Authentication:** JWT, Passport.js
+
+* **Deployment:**
+    * **Frontend:** Vercel
+    * **Backend:** Render
+    * **Database:** AWS RDS
 
 ## Architecture
 
