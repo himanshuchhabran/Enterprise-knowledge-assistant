@@ -17,7 +17,7 @@ const AdminPage = () => {
     const fetchDocuments = async () => {
       try {
         const token = localStorage.getItem('token');
-        const res = await axios.get('http://localhost:3001/api/admin/documents', {
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/admin/documents`, {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         setDocuments(res.data);
@@ -47,7 +47,7 @@ const AdminPage = () => {
     
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.post('http://localhost:3001/api/admin/upload', formData, {
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/admin/upload`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           'Authorization': `Bearer ${token}`
@@ -55,7 +55,7 @@ const AdminPage = () => {
       });
       setMessage(res.data.message);
       // Refresh document list after successful upload
-      const newDocsRes = await axios.get('http://localhost:3001/api/admin/documents', {
+      const newDocsRes = await axios.get(`${import.meta.env.VITE_API_URL}/api/admin/documents`, {
           headers: { 'Authorization': `Bearer ${token}` }
         });
       setDocuments(newDocsRes.data);
@@ -101,7 +101,7 @@ const AdminPage = () => {
             documents.map((doc, index) => (
               <li key={index}>
                 <a 
-                  href={`http://localhost:3001/data/${doc}`} 
+                  href={`${import.meta.env.VITE_API_URL}/data/${doc}`} 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-blue-400 hover:underline"

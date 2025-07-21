@@ -51,7 +51,7 @@ const LoginPage = ({ onLogin }) => {
   </div>
 
   <a 
-    href="http://localhost:3001/api/auth/google" 
+    href={`${import.meta.env.VITE_API_URL}/api/auth/google`} 
     className="w-full flex items-center justify-center px-4 py-2 font-bold text-white bg-red-600 rounded-md hover:bg-red-700"
   >
     Login with Google
