@@ -70,7 +70,7 @@ router.get(
     
     // Redirect the user back to the frontend with the token.
     // The frontend will then have to handle this.
-    res.redirect(`http://localhost:5173/?token=${token}&role=${req.user.role}`);
+    res.redirect(`${process.env.FRONTEND_URL}/?token=${token}&role=${req.user.role}`);
   }
 );
 
