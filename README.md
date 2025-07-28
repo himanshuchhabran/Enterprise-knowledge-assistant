@@ -86,6 +86,6 @@ VITE_API_URL=http://localhost:3001
 
 Knowledge Base: For simplicity and rapid development, the knowledge base is managed via file uploads to a local /data directory instead of a live integration with SharePoint/Confluence.
 
-Admin Assignment: The first user to register is automatically designated as the 'admin'. A full user management UI was considered out of scope for the MVP.
+Admin Assignment: The first user to register is automatically designated as the 'admin'.
 
 Vector Store: Vectra was chosen as a simple, file-based vector database to avoid the overhead of setting up and managing a separate database server like Pinecone or ChromaDB. 
