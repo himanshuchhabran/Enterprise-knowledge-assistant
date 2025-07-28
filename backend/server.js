@@ -6,7 +6,6 @@ const authRoutes = require('./routes/auth');
 const chatRoutes = require('./routes/chat');
 const adminRoutes = require('./routes/admin');
 const path = require('path'); 
-
 const app = express();
 const PORT = process.env.PORT || 3001;
 const passport = require('passport');

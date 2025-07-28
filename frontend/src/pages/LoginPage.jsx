@@ -8,10 +8,12 @@ const LoginPage = ({ onLogin }) => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [isRegistering, setIsRegistering] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
+    setIsLoading(true); 
     try {
       if (isRegistering) {
         await axios.post(`${API_URL}/register`, { email, password });
@@ -23,6 +25,8 @@ const LoginPage = ({ onLogin }) => {
       }
     } catch (err) {
       setError('Invalid credentials or server error.');
+    } finally {
+      setIsLoading(false); // Stop loading in all cases (success or error)
     }
   };
 
@@ -34,10 +38,12 @@ const LoginPage = ({ onLogin }) => {
 
         <h2 className="text-2xl font-bold text-center">{isRegistering ? 'Register' : 'Login'}</h2>
         <form onSubmit={handleSubmit} className="space-y-6">
-          <input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="Email" required className="w-full px-4 py-2 text-gray-900 bg-gray-200 rounded-md focus:outline-none"/>
-          <input type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Password" required className="w-full px-4 py-2 text-gray-900 bg-gray-200 rounded-md focus:outline-none"/>
+          <input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="Email" required className="w-full px-4 py-2 text-gray-900 bg-gray-200 rounded-md focus:outline-none disabled={isLoading}"/>
+          <input type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Password" required className="w-full px-4 py-2 text-gray-900 bg-gray-200 rounded-md focus:outline-none disabled={isLoading}"/>
           {error && <p className="text-red-500">{error}</p>}
-          <button type="submit" className="w-full px-4 py-2 font-bold text-white bg-blue-600 rounded-md hover:bg-blue-700">{isRegistering ? 'Register' : 'Login'}</button>
+          <button type="submit"
+          disabled={isLoading}
+          className="w-full px-4 py-2 font-bold text-white bg-blue-600 rounded-md hover:bg-blue-700 disabled:bg-gray-500">{isLoading ? 'Waking up server...' : (isRegistering ? 'Register' : 'Login')}</button>
         </form>
         <p className="text-center">
           <button onClick={() => setIsRegistering(!isRegistering)} className="text-blue-400 hover:underline">
