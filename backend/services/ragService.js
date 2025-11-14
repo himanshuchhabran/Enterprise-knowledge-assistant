@@ -6,7 +6,7 @@ const { pool } = require('../config/db');
 const index = new LocalIndex(path.join(__dirname, '../vectra_index'));
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 const embeddingModel = genAI.getGenerativeModel({ model: 'text-embedding-004' });
-const generationModel = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
+const generationModel = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
 
 const handleQuery = async (userQuery, userId) => {
   // 1. Embed user query

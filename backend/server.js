@@ -23,6 +23,9 @@ app.use('/data', express.static(path.join(__dirname, 'data')));
 app.use('/api/auth', authRoutes);
 app.use('/api/chat', chatRoutes);
 app.use('/api/admin', adminRoutes);
+app.get('/', (req, res) => {
+  res.send('Welcome! The server is running.');
+});
 
 // Start server
 app.listen(PORT, async () => {
